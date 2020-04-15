@@ -1,0 +1,25 @@
+{
+  "name": "travel-agency",
+  "version": "1.0.0",
+  "description": "Full project with Node.js, Express and Sequelize!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waldoaraque/TravelAgency.git"
+  },
+  "keywords": [],
+  "author": "Waldo Araque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waldoaraque/TravelAgency/issues"
+  },
+  "homepage": "https://github.com/waldoaraque/TravelAgency#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3"
+  }
+}
