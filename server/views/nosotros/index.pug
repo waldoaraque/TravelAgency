@@ -1,3 +1,26 @@
 extends ../layout/index
 block contenido
-    h1= page
+    main.container.mt-5
+        .row    
+            .col-md-5
+                img(src="img/nosotros.jpg", alt="Imagen de Nosotros", class="img-fluid")
+            .col-md-7
+                h1= page
+                blockquote Mauris diam lorem, tempus non quam vitae, dictum elementum dolor. Nunc mauris dolor, consectetur ac volutpat finibus, laoreet nec elit. In bibendum enim quis purus imperdiet commodo. Suspendisse dignissim massa eu ipsum vennenatis vestibulum.
+                p Maecenas bibendum eros a sem fringilla egestas. Pallentesque efficitur quis libero nec faucibus. Cras commodo ante eu ultricies faucibus. Vivamus vel erat quis est efficitur scelerisque. Aenean metus mi, tristique in ante at, aliquet suscipit lacus. Aliquam vitae suscipit tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In elementum justo in nisl venenatis, non ultrices eros consequat. In ac dui diam.
+                p Sed aliquet euismod euismod. Curabitur euismod suscipit nisi in malesuada. Nullam eget metus convallis, vestibulum augue ac, faucibus metus.
+    .listado-iconos
+        .container.mt-5.py-5.text-center
+            .row
+                .col-md-4
+                    img(src="img/icono_seguridad.svg", class="img-fluid mb-4")
+                    h2.mb-4 Seguridad 
+                    p Aliquam faucibus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                .col-md-4
+                    img(src="img/icono_destinos.svg", class="img-fluid mb-4")
+                    h2.mb-4 Mejores Destinos 
+                    p Aliquam faucibus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                .col-md-4
+                    img(src="img/icono_precios.svg", class="img-fluid mb-4")
+                    h2.mb-4 Mejor Precio  
+                    p Aliquam faucibus tincidunt accumsan. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
