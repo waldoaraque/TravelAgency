@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const bodyParser = require('body-parser')
 const routes = require('./routes')
 const configs = require('./config')
 const app = express()
@@ -20,5 +21,6 @@ app.use((req, res, next) => {
     console.log(res.locals)
     return next()
 })
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', routes())
 app.listen(port)

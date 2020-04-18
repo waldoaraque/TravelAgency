@@ -9,14 +9,14 @@ block contenido
 
                 .row.justify-content-center
                     .col-md-8
-                        form(action="")
+                        form(action="/testimoniales", method="POST")
                             .form-group
                                 label(for="nombre") Nombre
-                                input(id="nombre", class="form-control", type="text", placeholder="Tu nombre", name="nombre")
+                                input(id="nombre", class="form-control", type="text", placeholder="Tu nombre", name="nombre", value=nombre)
                             .form-group
                                 label(for="correo") Correo Electrónico: 
-                                input(id="correo", class="form-control", type="email", placeholder="Tu correo", name="correo")
+                                input(id="correo", class="form-control", type="email", placeholder="Tu correo", name="correo", value=correo)
                             .form-group
                                 label(for="mensaje") Mensaje
-                                textarea#mensaje(name="mensaje", rows="10", class="form-control", placeholder="Tu mensaje")
+                                textarea#mensaje(name="mensaje", rows="10", class="form-control", placeholder="Tu mensaje")= mensaje 
                             input.btn.btn-success.btn-block(type="submit", value="Agregar")

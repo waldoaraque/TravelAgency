@@ -17,7 +17,7 @@ module.exports = () => {
         .catch(err => console.log(`Ha ocurrido un error: ${err}`))
     )
 
-    router.get('/viajes/:id', (req, res) => Viaje.findById(req.params.id)
+    router.get('/viajes/:id', (req, res) => Viaje.findByPk(req.params.id)
         .then(viaje => res.render('viaje', {
             viaje
         }))
@@ -27,6 +27,31 @@ module.exports = () => {
     router.get('/testimoniales', (req, res) => res.render('testimoniales', {
         page: 'Testimoniales'
     }))
+
+    router.post('/testimoniales', (req, res) => {
+        let {nombre, correo, mensaje} = req.body
+        let errors = []
+        if (!nombre) {
+            errors.push({'mensaje': 'Agrega tu nombre'})
+        }
+        if (!correo) {
+            errors.push({'mensaje': 'Agrega tu correo'})
+        }
+        if (!mensaje) {
+            errors.push({'mensaje': 'Agrega tu mensaje'})
+        }
+
+        if (errors.lenght > 0) {
+            res.render('testimoniales', {
+                errors,
+                nombre,
+                correo,
+                mensaje
+            })
+        } else {
+
+        }
+    })
 
     return router
 }
