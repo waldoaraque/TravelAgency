@@ -1,11 +1,13 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+require('dotenv').config({ path: 'vars.env' })
 const routes = require('./routes')
 const configs = require('./config')
 const db = require('./config/database')
 const app = express()
-const port = 8080
+const host = process.env.HOST || '0.0.0.0'
+const port = process.env.PORT || 8080
 const config = configs[app.get('env')] //extraemos el ambiente dev o pro
 
 db.authenticate() //test connection to db
@@ -25,4 +27,4 @@ app.use((req, res, next) => { //middlewate -> next()
 })
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', routes())
-app.listen(port)
+app.listen(port, host, () => console.log(`Corriendo el servidor en: ${host}:${port}`))
