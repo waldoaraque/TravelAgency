@@ -15,7 +15,7 @@ app.locals.title = config.website
 app.set('view engine', 'pug') //habilita pug
 app.set('views', path.join(__dirname, './views'))
 app.use(express.static('public'))
-app.use((req, res, next) => {
+app.use((req, res, next) => { //middlewate -> next()
     const date = new Date()
     res.locals.actualDate = date.getFullYear() //locals se pueden crear variables
     res.locals.route = req.path
