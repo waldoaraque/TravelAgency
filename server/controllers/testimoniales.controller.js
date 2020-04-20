@@ -1,14 +1,17 @@
 const Testimonial = require('../models/Testimoniales')
-exports.getTestimoniales =  (req, res) => {
-    Testimonial.findAll()
-        .then(testimoniales => res.render('testimoniales', {
+exports.getTestimoniales =  async (req, res) => {
+    try {
+        const testimoniales = await Testimonial.findAll()
+        res.render('testimoniales', {
             page: 'Testimoniales',
             testimoniales
-        }))
-        .catch(err => console.log(`Ha ocurrido un error: ${err}`))
+        })
+    } catch (err) {
+        console.log(`Ha ocurrido un error: ${err}`)
+    }
 }
 
-exports.setTestimoniales =  (req, res) => {
+exports.setTestimoniales = async (req, res) => {
     let {nombre, correo, mensaje} = req.body
     let errors = []
     if (!nombre) {
@@ -22,11 +25,14 @@ exports.setTestimoniales =  (req, res) => {
     }
 
     if (errors.lenght > 0) {
+        const testimoniales = await Testimonial.findAll()
         res.render('testimoniales', {
             errors,
             nombre,
             correo,
-            mensaje
+            mensaje,
+            page: 'Testimoniales',
+            testimoniales
         })
     } else {
         Testimonial.create({
@@ -34,7 +40,7 @@ exports.setTestimoniales =  (req, res) => {
             correo,
             mensaje
         })
-        .then(testimonial => res.redirect('/'))
+        .then(testimonial => res.redirect('/testimoniales'))
         .catch(err => console.log(`Ha ocurrido un error: ${err}`))
     }
 }
