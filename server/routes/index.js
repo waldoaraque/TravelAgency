@@ -1,9 +1,29 @@
 const express = require('express')
 const router = express.Router()
 const Viaje = require('../models/Viajes')
+const Testimonial = require('../models/Testimoniales')
 
 module.exports = () => {
-    router.get('/', (req, res) => res.render('index')) 
+    router.get('/', (req, res) => {
+        const promises = []
+        promises.push(Viaje.findAll({ limit: 3 }))
+
+        promises.push(Testimonial.findAll({ limit: 3 }))
+
+        const result = Promise.all(promises)
+        
+        result
+            .then(rslt => res.render('index', {
+                page: 'Próximos Viajes',
+                clase: 'home',
+                viajes: rslt[0],
+                testimoniales: rslt[1] 
+            }))
+            .catch(err => console.log(`Ha ocurrido un error: ${err}`))  
+    })
+    
+    
+     
 
     router.get('/nosotros', (req, res) => res.render('nosotros', {
         page: 'Sobre Nosotros'
@@ -24,9 +44,12 @@ module.exports = () => {
         .catch(err => console.log(`Ha ocurrido un error: ${err}`))
     )
 
-    router.get('/testimoniales', (req, res) => res.render('testimoniales', {
-        page: 'Testimoniales'
-    }))
+    router.get('/testimoniales', (req, res) => Testimonial.findAll()
+        .then(testimoniales => res.render('testimoniales', {
+            page: 'Testimoniales',
+            testimoniales
+        }))
+        .catch(err => console.log(`Ha ocurrido un error: ${err}`)))
 
     router.post('/testimoniales', (req, res) => {
         let {nombre, correo, mensaje} = req.body
@@ -49,6 +72,13 @@ module.exports = () => {
                 mensaje
             })
         } else {
+            Testimonial.create({
+                nombre,
+                correo,
+                mensaje
+            })
+            .then(testimonial => res.redirect('/'))
+            .catch(err => console.log(`Ha ocurrido un error: ${err}`))
 
         }
     })

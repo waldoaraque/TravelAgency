@@ -3,10 +3,14 @@ block contenido
     main.container.mt-5
         h1.text-center.mb-5= page
 
-
         .row
             .col-md-12
-
+                include ../layout/partials/testimoniales
+            .col-md-12
+                h2 Agrega un Testimonial 
+                if(errors)
+                    each error in errors 
+                        .alert.alert-danger.text-center=error.mensaje 
                 .row.justify-content-center
                     .col-md-8
                         form(action="/testimoniales", method="POST")
