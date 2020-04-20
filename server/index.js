@@ -3,14 +3,15 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const routes = require('./routes')
 const configs = require('./config')
+const db = require('./config/database')
 const app = express()
 const port = 8080
 const config = configs[app.get('env')] //extraemos el ambiente dev o pro
-/*
-db.authenticate()
+
+db.authenticate() //test connection to db
     .then( res => console.log(`Conectado a la Base de Datos.`))
     .catch( err => console.log(`Ha ocurrido un error: ${err}`))
-*/
+
 app.locals.title = config.website
 app.set('view engine', 'pug') //habilita pug
 app.set('views', path.join(__dirname, './views'))
